@@ -3,12 +3,15 @@
 const Service = require('egg').Service
 
 class api extends Service {
-  async forward(url, data) {
-    const result = await this.ctx.curl(url, {
-      dataType: 'json',
+  async forward(url, options) {
+    const { data, params } = options
+    const resUrl = params ? `${url}${encodeURIComponent(params)}` : url
+    const res = await this.ctx.curl(resUrl, {
+      dataType: 'text',
       data,
     })
-    return result.data
+    this.ctx.status = res.status
+    return res.data
   }
 }
 
