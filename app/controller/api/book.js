@@ -23,40 +23,35 @@ class Book extends Controller {
     } else {
       query.major = category
     }
-    ctx.body = await service.api.forward(Api.book.byCategories, { data: query })
+    ctx.body = await service.api.forward(Api.book.byCategories, { query })
   }
 
   async byAuthor() {
     const { ctx, service } = this
-    ctx.body = await service.api.forward(Api.book.byAuthor, { data: ctx.params })
+    ctx.body = await service.api.forward(Api.book.byAuthor, { query: ctx.params.query })
   }
 
   async catalog() {
     const { ctx, service } = this
-    ctx.body = await service.api.forward(`${Api.book.catalog}${ctx.params.id}`, {
-      data: { view: 'chapters' },
-    })
+    ctx.body = await service.api.forward(`${Api.book.catalog}${ctx.params.id}`, { view: 'chapters' })
   }
 
   async sources() {
     const { ctx, service } = this
-    ctx.body = await service.api.forward(Api.book.sources, {
-      data: { book: ctx.params.id },
-    })
+    ctx.body = await service.api.forward(Api.book.sources, { book: ctx.params.id })
   }
 
   async chapter() {
     const { ctx, service } = this
+    const encodeParams = encodeURIComponent(ctx.params.chapterId)
     ctx.body = await service.api.forward(Api.book.chapter, {
-      params: encodeURIComponent(ctx.params.chapterId),
+      params: encodeParams,
     })
   }
 
   async search() {
     const { ctx, service } = this
-    ctx.body = await service.api.forward(Api.book.search, {
-      data: ctx.params,
-    })
+    ctx.body = await service.api.forward(Api.book.search, { query: ctx.params.query })
   }
 }
 

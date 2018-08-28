@@ -3,7 +3,7 @@
 const Controller = require('egg').Controller
 const Api = require('../../api/index')
 
-class Cats extends Controller {
+class Category extends Controller {
   async statistics() {
     this.ctx.body = await this.ctx.service.api.forward(Api.categories.statistics)
   }
@@ -13,4 +13,4 @@ class Cats extends Controller {
   }
 }
 
-module.exports = Cats
+module.exports = Category
