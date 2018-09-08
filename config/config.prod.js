@@ -9,5 +9,10 @@ module.exports = () => {
     },
   }
 
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET',
+  }
+
   return config
 }
