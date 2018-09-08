@@ -23,12 +23,12 @@ class Book extends Controller {
     } else {
       query.major = category
     }
-    ctx.body = await service.api.forward(Api.book.byCategories, { query })
+    ctx.body = await service.api.forward(Api.book.byCategories, query)
   }
 
   async byAuthor() {
     const { ctx, service } = this
-    ctx.body = await service.api.forward(Api.book.byAuthor, { query: ctx.params.query })
+    ctx.body = await service.api.forward(Api.book.byAuthor, { author: ctx.params.author })
   }
 
   async catalog() {
@@ -43,10 +43,8 @@ class Book extends Controller {
 
   async chapter() {
     const { ctx, service } = this
-    const encodeParams = encodeURIComponent(ctx.params.chapterId)
-    ctx.body = await service.api.forward(Api.book.chapter, {
-      params: encodeParams,
-    })
+    const encodeParams = encodeURIComponent(ctx.params.chapterLink)
+    ctx.body = await service.api.forward(`${Api.book.chapter}${encodeParams}`)
   }
 
   async search() {

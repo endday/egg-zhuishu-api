@@ -13,7 +13,7 @@ module.exports = app => {
   router.get('/api/book/recommend/:id', controller.api.book.recommend)
   router.get('/api/book/sources/:id', controller.api.book.sources)
   router.get('/api/book/catalog/:id', controller.api.book.catalog)
-  router.get('/api/book/chapter/:chapterId', controller.api.book.chapter)
+  router.get('/api/book/chapter/:chapterLink', controller.api.book.chapter)
   router.get('/api/book/search/:query', controller.api.book.search)
   router.get('/api/book/:id', controller.api.book.detail)
   router.get('/api/rank/list', controller.api.rank.list)
