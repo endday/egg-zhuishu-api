@@ -17,7 +17,7 @@ RUN npm install
 # ENV PORT 8000
 
 # 容器对外暴露的端口号
-EXPOSE 80
+EXPOSE 4000
 
 # 容器启动时执行的命令，类似npm run start
 CMD ["npm", "run", "docker-start"]

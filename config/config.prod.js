@@ -5,7 +5,7 @@ module.exports = () => {
 
   config.cluster = {
     listen: {
-      port: 80,
+      port: 4000,
     },
   }
 
